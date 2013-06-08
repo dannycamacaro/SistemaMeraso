@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RPTBaremo" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e69eed1c-059e-47a3-90b9-5925b5109b06">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigoInstitucion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     institucion.`codigoInstitucion` AS institucion_codigoInstitucion,
+     institucion.`nombreInstitucion` AS institucion_nombreInstitucion,
+     institucion.`rif` AS institucion_rif,
+     institucion.`direccion` AS institucion_direccion,
+     institucion.`telefono` AS institucion_telefono,
+     institucion.`contactoOrganizacion` AS institucion_contactoOrganizacion,
+     institucion.`telefonoContacto` AS institucion_telefonoContacto,
+     institucion.`cargoContacto` AS institucion_cargoContacto,
+     categoriaestudio.`codigoCategoria` AS categoriaestudio_codigoCategoria,
+     categoriaestudio.`nombreCategoria` AS categoriaestudio_nombreCategoria,
+     estudioinstitucion.`numeroEstudio` AS estudioinstitucion_numeroEstudio,
+     estudioinstitucion.`codigoEstudios` AS estudioinstitucion_codigoEstudios,
+     estudioinstitucion.`codigoOrganizacion` AS estudioinstitucion_codigoOrganizacion,
+     estudioinstitucion.`nombre` AS estudioinstitucion_nombre,
+     estudioinstitucion.`precios` AS estudioinstitucion_precios,
+     estudioinstitucion.`categoria` AS estudioinstitucion_categoria
+FROM
+     `institucion` institucion INNER JOIN `estudioinstitucion` estudioinstitucion ON institucion.`codigoInstitucion` = estudioinstitucion.`codigoOrganizacion`
+     INNER JOIN `categoriaestudio` categoriaestudio ON estudioinstitucion.`categoria` = categoriaestudio.`codigoCategoria`
+WHERE institucion.`codigoInstitucion`=$P{codigoInstitucion}]]>
+	</queryString>
+	<field name="institucion_codigoInstitucion" class="java.lang.Integer"/>
+	<field name="institucion_nombreInstitucion" class="java.lang.String"/>
+	<field name="institucion_rif" class="java.lang.String"/>
+	<field name="institucion_direccion" class="java.lang.String"/>
+	<field name="institucion_telefono" class="java.lang.String"/>
+	<field name="institucion_contactoOrganizacion" class="java.lang.String"/>
+	<field name="institucion_telefonoContacto" class="java.lang.String"/>
+	<field name="institucion_cargoContacto" class="java.lang.String"/>
+	<field name="categoriaestudio_codigoCategoria" class="java.lang.Integer"/>
+	<field name="categoriaestudio_nombreCategoria" class="java.lang.String"/>
+	<field name="estudioinstitucion_numeroEstudio" class="java.lang.Integer"/>
+	<field name="estudioinstitucion_codigoEstudios" class="java.lang.Integer"/>
+	<field name="estudioinstitucion_codigoOrganizacion" class="java.lang.Integer"/>
+	<field name="estudioinstitucion_nombre" class="java.lang.String"/>
+	<field name="estudioinstitucion_precios" class="java.math.BigDecimal"/>
+	<field name="estudioinstitucion_categoria" class="java.lang.Integer"/>
+	<group name="institucion_codigoInstitucion">
+		<groupExpression><![CDATA[$F{institucion_codigoInstitucion}]]></groupExpression>
+	</group>
+	<group name="categoriaestudio_nombreCategoria">
+		<groupExpression><![CDATA[$F{categoriaestudio_nombreCategoria}]]></groupExpression>
+	</group>
+	<group name="estudioinstitucion_numeroEstudio">
+		<groupExpression><![CDATA[$F{estudioinstitucion_numeroEstudio}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="59" splitType="Stretch">
+			<textField>
+				<reportElement x="45" y="30" width="31" height="14" uuid="80641b70-d454-48d1-9d42-cf2eac55778b"/>
+				<textFieldExpression><![CDATA[$F{institucion_codigoInstitucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="16" width="382" height="14" uuid="dbf3fbe1-8f6e-4e7a-9d16-bfa2af5924f0"/>
+				<textFieldExpression><![CDATA[$F{institucion_nombreInstitucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="16" width="100" height="14" uuid="eff32aa3-3916-4ec0-97a2-ba2abe39fd57"/>
+				<textFieldExpression><![CDATA[$F{institucion_rif}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="53" y="44" width="519" height="14" uuid="067c7ea8-abc1-45fd-979c-2742a6ef7dc1"/>
+				<textFieldExpression><![CDATA[$F{institucion_direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="30" width="81" height="14" uuid="42e1176b-e0e6-407f-ae47-d8ce06d695ae"/>
+				<textFieldExpression><![CDATA[$F{institucion_telefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="30" width="44" height="14" uuid="c24ea2be-685e-4edc-b7d1-a8f11ab95bad"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="16" width="65" height="14" uuid="401f3f1b-e001-4ec5-9382-7f52af3cbe98"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institucion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="16" width="24" height="14" uuid="f08daa10-5292-45ab-9537-12bcf6ba921b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rif:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="30" width="48" height="14" uuid="797c6851-01f6-4b80-92a3-2e696dadafa3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="44" width="51" height="14" uuid="c654a985-0ad2-439a-831d-c43b9859de4a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Direccion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="571" height="16" uuid="f3a61158-cfab-48af-94f7-1555069387cc"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE BAREMO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="58" width="571" height="1" uuid="b342e616-e0b4-4621-bd2f-10849894601c"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="64" height="14" uuid="9f97d516-7504-4f73-ab72-87f9bf224385"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Categoria:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="0" width="44" height="14" uuid="be845429-08b2-440a-99dc-279bca65283f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="513" y="0" width="59" height="14" uuid="117a8d6e-e43b-4d25-bfb1-8cdfd622d461"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="238" y="0" width="100" height="14" uuid="1d7fbf0f-167b-4819-a489-e067cbe16b41"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Estudio]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="14" width="571" height="1" uuid="82adc4c3-8be8-4f46-a09a-aef4d1706b0f"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="193" y="0" width="45" height="13" uuid="add60fe6-fe52-4a30-84e7-119cc6eee220"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudioinstitucion_numeroEstudio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="0" width="271" height="13" uuid="fccfbd7b-6133-4b7e-b71f-6a9b8b096aad"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudioinstitucion_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="513" y="0" width="59" height="13" uuid="98eaac85-ed17-449f-9f5a-ff6909154a3c"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudioinstitucion_precios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="193" height="13" uuid="5bba32f0-f7f3-425c-8d06-2fb72de3354c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoriaestudio_nombreCategoria}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

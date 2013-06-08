@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a65d3e8e-30a5-49ab-aed9-70d90c79c615">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     institucion.`codigoInstitucion` AS institucion_codigoInstitucion,
+     institucion.`nombreInstitucion` AS institucion_nombreInstitucion,
+     institucion.`rif` AS institucion_rif,
+     institucion.`direccion` AS institucion_direccion,
+     institucion.`telefono` AS institucion_telefono,
+     institucion.`contactoOrganizacion` AS institucion_contactoOrganizacion,
+     institucion.`telefonoContacto` AS institucion_telefonoContacto,
+     institucion.`cargoContacto` AS institucion_cargoContacto
+FROM
+     `institucion` institucion]]>
+	</queryString>
+	<field name="institucion_codigoInstitucion" class="java.lang.Integer"/>
+	<field name="institucion_nombreInstitucion" class="java.lang.String"/>
+	<field name="institucion_rif" class="java.lang.String"/>
+	<field name="institucion_direccion" class="java.lang.String"/>
+	<field name="institucion_telefono" class="java.lang.String"/>
+	<field name="institucion_contactoOrganizacion" class="java.lang.String"/>
+	<field name="institucion_telefonoContacto" class="java.lang.String"/>
+	<field name="institucion_cargoContacto" class="java.lang.String"/>
+	<group name="Group1">
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupHeader>
+			<band height="32">
+				<staticText>
+					<reportElement x="132" y="12" width="100" height="20" uuid="e09bcac2-e60c-49e2-a0c5-cb79199553c0"/>
+					<text><![CDATA[institucion_nombreInstitucion]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="3" y="12" width="45" height="20" uuid="91c346ff-ad31-4035-a6be-cd9c5b5548ca"/>
+					<text><![CDATA[institucion_codigoInstitucion]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="068f1f54-40d7-47ca-8634-6bc9bf32c833"/>
+				<staticText>
+					<reportElement x="23" y="20" width="542" height="43" forecolor="#FFFFFF" uuid="c0a6e26b-9d7f-4ffa-a26e-c3981a5cc452"/>
+					<textElement textAlignment="Center">
+						<font size="24" isBold="true"/>
+					</textElement>
+					<text><![CDATA[REPORTE DE INSTITUCIONES]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<detail>
+		<band height="62">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="27" width="555" height="1" uuid="33acc78b-a586-4756-a0c7-7160d750a78a"/>
+			</line>
+			<textField>
+				<reportElement x="132" y="8" width="100" height="20" uuid="6634d82e-261d-4012-9018-fbae96438980"/>
+				<textFieldExpression><![CDATA[$F{institucion_nombreInstitucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="8" width="31" height="20" uuid="4fb145ba-a9d3-4c46-8e70-14cf0072532d"/>
+				<textFieldExpression><![CDATA[$F{institucion_codigoInstitucion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="e801f394-7194-4be9-8c16-f6a71935fd20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="0ca500a8-c9e1-473a-989f-4b14e6e01fd7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="01ea4691-bf98-4573-bddd-27dd9539f6dc"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

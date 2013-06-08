@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c21395f3-207b-4562-9e64-8e1cee2f84b6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     institucion.`codigoInstitucion` AS institucion_codigoInstitucion,
+     institucion.`nombreInstitucion` AS institucion_nombreInstitucion,
+     estudioinstitucion.`numeroEstudio` AS estudioinstitucion_numeroEstudio,
+     estudioinstitucion.`codigoOrganizacion` AS estudioinstitucion_codigoOrganizacion,
+     estudioinstitucion.`nombre` AS estudioinstitucion_nombre,
+     estudioinstitucion.`precios` AS estudioinstitucion_precios,
+     estudioinstitucion.`categoria` AS estudioinstitucion_categoria,
+     categoriaestudio.`nombreCategoria` AS categoriaestudio_nombreCategoria
+FROM
+     `institucion` institucion INNER JOIN `estudioinstitucion` estudioinstitucion ON institucion.`codigoInstitucion` = estudioinstitucion.`codigoOrganizacion`
+     INNER JOIN `categoriaestudio` categoriaestudio ON estudioinstitucion.`categoria` = categoriaestudio.`codigoCategoria`
+WHERE institucion.`codigoInstitucion` ='1']]>
+	</queryString>
+	<field name="institucion_codigoInstitucion" class="java.lang.Integer"/>
+	<field name="institucion_nombreInstitucion" class="java.lang.String"/>
+	<field name="estudioinstitucion_numeroEstudio" class="java.lang.Integer"/>
+	<field name="estudioinstitucion_codigoOrganizacion" class="java.lang.Integer"/>
+	<field name="estudioinstitucion_nombre" class="java.lang.String"/>
+	<field name="estudioinstitucion_precios" class="java.math.BigDecimal"/>
+	<field name="estudioinstitucion_categoria" class="java.lang.Integer"/>
+	<field name="categoriaestudio_nombreCategoria" class="java.lang.String"/>
+	<title>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="19" y="23" width="100" height="20" uuid="5791e979-9371-4d9a-b2d2-972f6d199d92"/>
+				<textFieldExpression><![CDATA[$F{institucion_codigoInstitucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="23" width="100" height="20" uuid="828a5f37-7fdb-49c7-b939-1b6c87bae7bd"/>
+				<textFieldExpression><![CDATA[$F{institucion_nombreInstitucion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="19" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="19" y="2" width="158" height="20" uuid="3c4c861c-f478-4f30-a0a8-6a0fc3c00608"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Categoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="2" width="66" height="20" uuid="b526c9f6-1b7f-4e92-b1c5-4d2bfa9e5f0d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cod. Estudio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="2" width="75" height="20" uuid="1c4f0922-7b42-45bf-b8da-043b6cb881b2"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="2" width="100" height="20" uuid="7f816c1c-90ef-467d-bab9-194a8b88089f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estudio]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="342" y="0" width="360" height="20" uuid="c056796e-920c-412d-ad51-446722484b11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudioinstitucion_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="0" width="66" height="20" uuid="360f707f-5b44-4e6b-bbe5-7bfbd7ec1c77"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudioinstitucion_numeroEstudio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="702" y="0" width="75" height="20" uuid="7298262d-b0f0-49e1-b1c5-25a917d66a65"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudioinstitucion_precios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="19" y="1" width="235" height="20" uuid="0bb511b8-63fe-4361-8474-4cc4c99ab95c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoriaestudio_nombreCategoria}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

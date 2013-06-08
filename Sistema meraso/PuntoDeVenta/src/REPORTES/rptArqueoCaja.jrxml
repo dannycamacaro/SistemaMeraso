@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptArqueoCaja" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="29fde89c-1214-46bb-a8ab-c167c2db1e10">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="turno" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     caja.`fecha` AS caja_fecha,
+     caja.`turno` AS caja_turno,
+     caja.`totalEstudio` AS caja_totalEstudio,
+     caja.`codigoSolicitud` AS caja_codigoSolicitud,
+     caja.`nombrePaciente` AS caja_nombrePaciente,
+     (SELECT SUM(totalEstudio) FROM caja WHERE fecha=$P{fecha} AND turno=$P{turno})AS total
+FROM
+     `caja` caja
+ WHERE fecha=$P{fecha} AND turno=$P{turno}]]>
+	</queryString>
+	<field name="caja_fecha" class="java.sql.Date"/>
+	<field name="caja_turno" class="java.lang.String"/>
+	<field name="caja_totalEstudio" class="java.math.BigDecimal"/>
+	<field name="caja_codigoSolicitud" class="java.lang.Integer"/>
+	<field name="caja_nombrePaciente" class="java.lang.String"/>
+	<field name="total" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="25" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="20" uuid="b65e5ad1-c67e-4b55-a9d5-ad71c4f6cd89"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="4bef0fe2-e628-4839-a7b4-d6427e32b914"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Caja]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="70" height="20" uuid="06dd628a-40a9-43f9-b7d1-c9b4d15aba93"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="0" width="69" height="20" uuid="eef708a1-5a7e-45cf-a018-8bb6a918868d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Turno:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="21" width="555" height="1" uuid="e31430c7-3337-4ec5-a7fe-e15a2a25eb8b"/>
+			</line>
+			<textField>
+				<reportElement x="70" y="1" width="100" height="20" uuid="6b5ca9c6-477a-4266-9b8f-388d240a0dde"/>
+				<textFieldExpression><![CDATA[$F{caja_fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="0" width="100" height="20" uuid="073d5a4e-3a62-4330-b43e-5b823fce9a11"/>
+				<textFieldExpression><![CDATA[$F{caja_turno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="70" height="20" uuid="77670ff2-3d74-4a57-88d8-e73be8767e4d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Solicitud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="447" y="0" width="101" height="20" uuid="6054b198-b2b3-4f4b-81dd-93e8b2abc972"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pagado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="92" y="0" width="70" height="20" uuid="2e592087-2243-4397-bdb5-c73f4ab70e21"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="447" y="0" width="100" height="14" uuid="839d7ac0-8ce3-4b93-a095-a4676eed8309"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{caja_totalEstudio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="97" y="0" width="100" height="14" uuid="f6cf29d7-a134-464a-8558-a1332d43dcd3"/>
+				<textFieldExpression><![CDATA[$F{caja_nombrePaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="0" width="100" height="14" uuid="522ec3dc-b18e-45b7-9e02-de97cbb43f93"/>
+				<textFieldExpression><![CDATA[$F{caja_codigoSolicitud}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="357" y="0" width="90" height="20" uuid="7aba5670-9646-4e69-8317-e967a70067ed"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Caja:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="448" y="0" width="100" height="20" uuid="1e4e6a58-eb06-4263-915b-11550f863f59"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

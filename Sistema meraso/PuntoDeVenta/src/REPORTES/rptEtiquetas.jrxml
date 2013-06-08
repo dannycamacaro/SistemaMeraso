@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptEtiquetas" language="groovy" pageWidth="340" pageHeight="170" columnWidth="300" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3c1274c4-df3d-4c7b-8469-3508715c38a8">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="172"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="numeroSolicitud" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     paciente.`Cedula` AS paciente_Cedula,
+     paciente.`nombres` AS paciente_nombres,
+     paciente.`apellidos` AS paciente_apellidos,
+     paciente.`fechaNacimiento` AS paciente_fechaNacimiento,
+     paciente.`sexo` AS paciente_sexo,
+     solicitudestudio.`fecha` AS solicitudestudio_fecha,
+     institucion.`nombreInstitucion` AS institucion_nombreInstitucion,
+     estudioinstitucion.`nombre` AS estudioinstitucion_nombre,
+     detallesolicitud.`numero_solicitud` AS detallesolicitud_numero_solicitud,
+     solicitudestudio.`numeroSolicitud` AS solicitudestudio_numeroSolicitud
+FROM
+     `paciente` paciente INNER JOIN `solicitudestudio` solicitudestudio ON paciente.`codigoPaciente` = solicitudestudio.`codigoPaciente`
+     INNER JOIN `institucion` institucion ON solicitudestudio.`codigoInstitucion` = institucion.`codigoInstitucion`
+     INNER JOIN `estudioinstitucion` estudioinstitucion ON institucion.`codigoInstitucion` = estudioinstitucion.`codigoOrganizacion`
+     INNER JOIN `detallesolicitud` detallesolicitud ON estudioinstitucion.`numeroEstudio` = detallesolicitud.`numeroEstudio`
+WHERE
+     solicitudestudio.`numeroSolicitud`  = $P{numeroSolicitud} AND  detallesolicitud.`numero_solicitud`=$P{numeroSolicitud}]]>
+	</queryString>
+	<field name="paciente_Cedula" class="java.lang.String"/>
+	<field name="paciente_nombres" class="java.lang.String"/>
+	<field name="paciente_apellidos" class="java.lang.String"/>
+	<field name="paciente_fechaNacimiento" class="java.sql.Date"/>
+	<field name="paciente_sexo" class="java.lang.String"/>
+	<field name="solicitudestudio_fecha" class="java.sql.Date"/>
+	<field name="institucion_nombreInstitucion" class="java.lang.String"/>
+	<field name="estudioinstitucion_nombre" class="java.lang.String"/>
+	<field name="detallesolicitud_numero_solicitud" class="java.lang.Integer"/>
+	<field name="solicitudestudio_numeroSolicitud" class="java.lang.Integer"/>
+	<title>
+		<band height="11" splitType="Stretch">
+			<textField>
+				<reportElement x="18" y="0" width="282" height="11" uuid="4049b206-b5c9-48dc-89fd-5185e28d20d4"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{institucion_nombreInstitucion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="18" height="11" uuid="1d1a0100-36e0-4657-b890-335cf51881dc"/>
+				<textElement>
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Seg:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="46" splitType="Stretch">
+			<textField>
+				<reportElement x="32" y="0" width="92" height="12" uuid="3287d76c-0cc1-4c0f-a67f-39fae9c40b35"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_Cedula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="13" width="88" height="12" uuid="4c938ef1-6e34-4f5f-b5cf-a0a114e0273d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="13" width="111" height="12" uuid="857cfbf7-bf71-4e20-ae7e-2814412f89e2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="24" width="36" height="12" uuid="1e036605-acbf-46c3-b549-cd52854b9f50"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_fechaNacimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="1" width="85" height="11" uuid="91da47b0-99ce-426e-ad86-e9e5ba45e9c0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_sexo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="13" width="36" height="11" uuid="13b3f74f-adb8-4d2d-94bd-3ef8a92d4400"/>
+				<textElement>
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Paciente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="36" height="11" uuid="2287d7bb-4d27-44be-b943-6dea37afa2e5"/>
+				<textElement>
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cedula:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="1" width="36" height="11" uuid="b295d8e3-ceae-4662-ad60-0e5a773f74ed"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="1" width="25" height="12" uuid="0eb32de1-dfe9-4c52-a7fe-8f5411a99126"/>
+				<textElement>
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="264" y="12" width="36" height="12" uuid="336bcbdf-b23d-4543-9b9b-358e5f12c7f1"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudestudio_fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="264" y="23" width="36" height="11" uuid="b797ca00-c70b-41c5-856c-19884e352ed9"/>
+				<textElement>
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Solicitud:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="35" width="36" height="11" uuid="4495e0fc-70e6-4c12-b579-0bc35df7a3ac"/>
+				<textElement>
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Estudio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="24" width="35" height="11" uuid="871caf5c-535a-45f4-981a-8f8e91d22dec"/>
+				<textElement>
+					<font size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[F. Nac:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="264" y="35" width="36" height="11" uuid="e252ba0d-b062-4048-b114-fa3f100fc425"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudestudio_numeroSolicitud}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="219" height="12" uuid="5073b2e5-3013-4958-9d5b-fadbcde215b2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estudioinstitucion_nombre}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="279" y="0" width="11" height="12" uuid="e39e4bc0-9ccc-4f23-9e1f-e466feedbdff"/>
+			</rectangle>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Baremo" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="03e50cb1-d630-41b2-be8f-f22419e39679">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     institucion.`codigoInstitucion` AS institucion_codigoInstitucion,
+     institucion.`nombreInstitucion` AS institucion_nombreInstitucion,
+     institucion.`rif` AS institucion_rif,
+     institucion.`direccion` AS institucion_direccion,
+     institucion.`telefono` AS institucion_telefono,
+     institucion.`contactoOrganizacion` AS institucion_contactoOrganizacion,
+     institucion.`telefonoContacto` AS institucion_telefonoContacto,
+     institucion.`cargoContacto` AS institucion_cargoContacto
+FROM
+     `institucion` institucion]]>
+	</queryString>
+	<field name="institucion_codigoInstitucion" class="java.lang.Integer"/>
+	<field name="institucion_nombreInstitucion" class="java.lang.String"/>
+	<field name="institucion_rif" class="java.lang.String"/>
+	<field name="institucion_direccion" class="java.lang.String"/>
+	<field name="institucion_telefono" class="java.lang.String"/>
+	<field name="institucion_contactoOrganizacion" class="java.lang.String"/>
+	<field name="institucion_telefonoContacto" class="java.lang.String"/>
+	<field name="institucion_cargoContacto" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<textField>
+				<reportElement x="17" y="115" width="100" height="20" uuid="f57daa10-549f-4432-82bc-bd63257809fa"/>
+				<textFieldExpression><![CDATA[$F{institucion_codigoInstitucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="116" width="100" height="20" uuid="593599a9-769c-4222-9cb4-8f560f9fbc0e"/>
+				<textFieldExpression><![CDATA[$F{institucion_nombreInstitucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="17" y="96" width="100" height="20" uuid="8b0cbf60-8805-4d6c-9513-9960ff309bb3"/>
+				<textFieldExpression><![CDATA[codigo
+]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="95" width="100" height="20" uuid="5dd69fe5-82d3-413d-841e-5aa2b91a68c5"/>
+				<textFieldExpression><![CDATA[nombre]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="3dd54bd0-baf0-44b3-95ad-1664609b21ca"/>
+				<staticText>
+					<reportElement x="128" y="10" width="100" height="20" uuid="0020733b-4536-43f0-a4cb-c8e88285e2bb"/>
+					<text><![CDATA[institucion_nombreInstitucion]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="228" y="10" width="100" height="20" uuid="48163d00-f3eb-4077-aa51-b879b2fe436d"/>
+					<textFieldExpression><![CDATA[$F{institucion_nombreInstitucion}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="ee68eb72-1454-49b9-ae4a-e8bb09a1ee48"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

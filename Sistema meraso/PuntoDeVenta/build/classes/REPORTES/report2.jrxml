@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="097f536c-1744-4cfc-8010-4bfeb70c4624">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<subDataset name="New Dataset 1" uuid="c562a8ec-4483-4811-8595-81eaba38e574">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     estudioinstitucion.`nombre` AS estudioinstitucion_nombre,
+     estudioinstitucion.`precios` AS estudioinstitucion_precios,
+     estudioinstitucion.`numeroEstudio` AS estudioinstitucion_numeroEstudio
+FROM
+     `estudioinstitucion` estudioinstitucion]]>
+		</queryString>
+		<field name="estudioinstitucion_nombre" class="java.lang.String"/>
+		<field name="estudioinstitucion_precios" class="java.math.BigDecimal"/>
+		<field name="estudioinstitucion_numeroEstudio" class="java.lang.Integer"/>
+		<group name="estudioinstitucion_nombre">
+			<groupExpression><![CDATA[$F{estudioinstitucion_nombre}]]></groupExpression>
+		</group>
+		<group name="estudioinstitucion_precios">
+			<groupExpression><![CDATA[$F{estudioinstitucion_precios}]]></groupExpression>
+		</group>
+		<group name="estudioinstitucion_numeroEstudio">
+			<groupExpression><![CDATA[$F{estudioinstitucion_numeroEstudio}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT
+     institucion.`codigoInstitucion` AS institucion_codigoInstitucion,
+     institucion.`nombreInstitucion` AS institucion_nombreInstitucion,
+     estudioinstitucion.`numeroEstudio` AS estudioinstitucion_numeroEstudio,
+     estudioinstitucion.`nombre` AS estudioinstitucion_nombre,
+     estudioinstitucion.`precios` AS estudioinstitucion_precios,
+     estudioinstitucion.`categoria` AS estudioinstitucion_categoria,
+     categoriaestudio.`codigoCategoria` AS categoriaestudio_codigoCategoria,
+     categoriaestudio.`nombreCategoria` AS categoriaestudio_nombreCategoria
+FROM
+     `institucion` institucion INNER JOIN `estudioinstitucion` estudioinstitucion ON institucion.`codigoInstitucion` = estudioinstitucion.`codigoOrganizacion`
+     INNER JOIN `categoriaestudio` categoriaestudio ON estudioinstitucion.`categoria` = categoriaestudio.`codigoCategoria`
+WHERE
+     institucion.`codigoInstitucion` = '1'
+ORDER BY
+     estudioinstitucion.`categoria` ASC]]>
+	</queryString>
+	<field name="institucion_codigoInstitucion" class="java.lang.Integer"/>
+	<field name="institucion_nombreInstitucion" class="java.lang.String"/>
+	<field name="estudioinstitucion_numeroEstudio" class="java.lang.Integer"/>
+	<field name="estudioinstitucion_nombre" class="java.lang.String"/>
+	<field name="estudioinstitucion_precios" class="java.math.BigDecimal"/>
+	<field name="estudioinstitucion_categoria" class="java.lang.Integer"/>
+	<field name="categoriaestudio_codigoCategoria" class="java.lang.Integer"/>
+	<field name="categoriaestudio_nombreCategoria" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="55" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="74" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="44" splitType="Stretch"/>
+		<band height="50"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>
